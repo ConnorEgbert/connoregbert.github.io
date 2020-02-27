@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Secure NGINX Webserver &middot; Connor.rocks
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/naringu.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/form.css">
+
+  <!-- Icons -->
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <link rel="alternate" type="application/rss+xml" title="Mozilla RSS" href="feed.category.xml">
+  </head>
+
+
+<body class="theme-6dd">
+    <input title="Sidebar Toggle" type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>Security minded developer available for hire.</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/">About</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/courselist/">Course List</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/donate/">Donate</a>
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/categories/">Category Index</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/contact/">Contact</a>
+        
+      
+    
+      
+    
+      
+        
+      
+    
+      
+    
+      
+    
+    <a class="sidebar-nav-item" href="https://github.com/ConnorEgbert">GitHub</a>
+  </nav>
+</div>
+
+
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">Connor.rocks</a>
+            <small>Security minded developer available for hire.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 style="text-align: center;" class="post-title">Secure NGINX Webserver</h1>
+  <span style="text-align: center;" class="post-date">24 Mar 2018</span>
+  <hr />
+  <div class="message">
+DISCLAIMER
+<br /><br />
+This post is not exhaustive and focuses on providing you with the terminology necessary to learn more. You will still need to configure these to suit your web server specifically.
+</div>
+
+<h1 id="before-you-begin">Before you begin</h1>
+<p>This post is specific to Nginx, but many of the principles can be applied to apache or other popular web servers with a few tweaks to the configuration statements.
+<br /><br />
+To compare your security settings before and after, Mozilla will scan your website and give you a grade for your level of security at <a href="https://observatory.mozilla.org/">observatory.mozilla.org</a>. You can also install <a href="http://wapiti.sourceforge.net/">wapiti</a> to scan your site for vulnerabilities outside of the scope of this post.
+<br /><br />
+View the report for Connor.rocks at <a href="https://observatory.mozilla.org/analyze/connor.rocks">observatory.mozilla.org/analyze/connor.rocks</a>
+<br /><br />
+Important files:</p>
+<ul>
+  <li>Nginx main config file
+    <ul>
+      <li>/etc/nginx/nginx.conf</li>
+    </ul>
+  </li>
+  <li>Diffie-Hellman key file
+    <ul>
+      <li>You can chose where to put this, but I recommend here for organization.</li>
+      <li>/etc/nginx/cert/</li>
+    </ul>
+  </li>
+  <li>PHP configuration file
+    <ul>
+      <li>/etc/php.ini (default)</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="ssltls">SSL/TLS</h1>
+<p>SSL/TLS could probably merit an entire post, so I’ll try to keep it sort. LetsEncrypt will do basically everything for free, and all you gotta do is run the installer. Here’s how: download certbot for your setup at <a href="https://certbot.eff.org/">certbot.eff.org</a>, run it, and you can now use HTTPS.</p>
+
+<p>From here I recommend upgrading your Diffie-Hellman key. Default key lengths are quite short, so we need to generate a new one. You will need Git if you have not already installed it.</p>
+
+<p>Create the folder /etc/nginx/cert/ if it does not already exist, then run the following command. This could take a while. It took a full episode of Your Lie in April (~20 minutes) for me before it finally finished.</p>
+<blockquote>
+  <p>openssl dhparam 4096 -out /etc/nginx/cert/dhparam.pem</p>
+</blockquote>
+
+<p>When it finishes, add this to your nginx config file right around where the ssl options added by certbot appear.</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">server</span> <span class="p">{</span>
+    <span class="p">...</span>
+    <span class="nx">ssl_dhparam</span> <span class="o">/</span><span class="nx">etc</span><span class="o">/</span><span class="nx">nginx</span><span class="o">/</span><span class="nx">cert</span><span class="o">/</span><span class="nx">dhparam</span><span class="p">.</span><span class="nx">pem</span><span class="p">;</span>
+    <span class="p">...</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Last but not least, if yo do not see the following in the config file, add it to ensure that your server prefers to use at least generally acceptable ciphers.</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">http</span> <span class="p">{</span>
+    <span class="p">...</span>
+    <span class="nx">ssl_protocols</span> <span class="nx">TLSv1</span> <span class="nx">TLSv1</span><span class="p">.</span><span class="mi">1</span> <span class="nx">TLSv1</span><span class="p">.</span><span class="mi">2</span><span class="p">;</span>
+    <span class="nx">ssl_ciphers</span> <span class="s1">'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH'</span><span class="p">;</span>
+    <span class="nx">ssl_prefer_server_ciphers</span> <span class="nx">on</span><span class="p">;</span>
+    <span class="p">...</span>
+<span class="p">}</span></code></pre></figure>
+
+<h1 id="content-security-policy-csp">Content Security Policy (CSP)</h1>
+<p>This will be the hardest section.
+<br /><br />
+Content security policy is one of the most important aspects of securing your visitors aside from SSL/TLS, but is <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP#Browser_compatibility">not supported by all browsers</a>. The CSP itself is sent via HTTP headers. It limits what a browser will display by whitelisting or blacklisting specific content from third party sites. For example, if any external scripts run on your site e.g. Google analytics.
+<br /><br />
+The command to add your own strict content security policy is</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js">    <span class="p">...</span>
+    <span class="nx">add_header</span> <span class="nx">Content</span><span class="o">-</span><span class="nx">Security</span><span class="o">-</span><span class="nx">Policy</span> <span class="s2">"default-src 'self'; script-src 'self' 'unsafe-eval'; img-src 'self'; style-src 'self'; font-src 'self'; frame-src 'none'; object-src 'none'; form-src 'self'"</span><span class="p">;</span>
+    <span class="p">...</span></code></pre></figure>
+
+<p>This command, as written will disable nearly all content from external sites. In order to relax this a bit we need to look at each directive. It should be added outside of any sections to apply it to the whole server, as opposed to a subset.</p>
+
+<h3 id="directives">Directives</h3>
+<p>Each directive is added to the list separated by semicolons in the header. Notable values are ‘none’, ‘self’, and ‘unsafe-inline’. Using ‘none’ will disallow all sources of the content controlled by the directive. Using ‘self’ is just a shorter version of typing your own url, so for this site it would translate to ‘https://connor.rocks’, and would allow content from my<em>self</em>. Last but not least, ‘unsafe-inline’ is used mainly in script-src and style-src allowing scripts or css written in line with HTML. I do not recommend using it because it is quite easy to add lines to HTML in transit, meaning that your visitors may execute code injected by a man in the middle.</p>
+
+<p>This table is an overview of common directives. An extended list can be found at <a href="https://www.w3.org/TR/CSP2/#directives">w3.org</a>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Directive</th>
+      <th>Usage</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr>
+      <td>script-src</td>
+      <td>'self' js.external.com</td>
+      <td>Determines allowed sources of client side scripts.</td>
+    </tr>
+  </tfoot>
+  <tbody>
+    <tr>
+      <td>default-src</td>
+      <td>'none' external.website.com</td>
+      <td>This directive is the default for all loaded content: JavaScript, css, fonts, frames, ...etc. Most directives, if not manually set, will use this value. As such, the most secure option is to use 'none' and override the default by allowing other settings.</td>
+    </tr>
+    <tr>
+      <td>style-src</td>
+      <td>'self' external.website.com</td>
+      <td>Determines allowed sources of CSS.</td>
+    </tr>
+    <tr>
+      <td>img-src</td>
+      <td>'self' external.website.com</td>
+      <td>Determines allowed sources of images.</td>
+    </tr>
+    <tr>
+      <td>form-src</td>
+      <td>'self'</td>
+      <td>Determines allowed sources of HTML forms. Usually this is just self.</td>
+    </tr>
+    <tr>
+      <td>frame-src</td>
+      <td>'self' external.website.com</td>
+      <td>Determines allowed sources of iframes. This includes things like embedded youtube videos.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="example-to-add-paypal-donate-button-to-website-with-strict-content-security-policy">Example to add Paypal donate button to website with strict content security policy</h3>
+<p>These are the only directives needed to add a PayPal donate button to your site. Using a strict content security policy, browsers will not display the donate button unless you add PayPal as an acceptable source for images and forms.</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js">    <span class="nx">img</span><span class="o">-</span><span class="nx">src</span> <span class="s1">'self'</span> <span class="nx">https</span><span class="p">:</span><span class="c1">//www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif https://www.paypalobjects.com/en_US/i/scr/pixel.gif;
+</span>
+    <span class="nx">form</span><span class="o">-</span><span class="nx">action</span> <span class="s1">'self'</span> <span class="nx">https</span><span class="p">:</span><span class="c1">//www.paypal.com/cgi-bin/webscr;</span></code></pre></figure>
+
+<h1 id="redirect-traffic-to-https">Redirect traffic to HTTPS</h1>
+<h3 id="strict-transport-security-hsts">Strict Transport Security (HSTS)</h3>
+<p>HSTS tells the client that they should use HTTPS, and remember it for the future.</p>
+
+<p>It’s just an extra line in the config.</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js">    <span class="p">...</span>
+    <span class="nx">add_header</span> <span class="nx">Strict</span><span class="o">-</span><span class="nx">Transport</span><span class="o">-</span><span class="nx">Security</span> <span class="s2">"max-age=31536000"</span> <span class="nx">always</span><span class="p">;</span>
+    <span class="p">...</span></code></pre></figure>
+
+<p>Max age is the time that the browser should remember that it should use HTTPS on your site. You can append ‘includeSubDomains’ to well… include sub domains.</p>
+
+<h3 id="double-check-to-be-sure-the-redirect-is-working">Double check to be sure the redirect is working</h3>
+<p>Having the certificates and setup for HTTPS is great and all, but if no one uses it, then it is worthless.
+<br /><br />
+This one is pretty easy. Just add this line that checks for http connections and redirects them to a corresponding https url.</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="k">if</span> <span class="p">(</span><span class="nx">$scheme</span> <span class="o">=</span> <span class="nx">http</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">301</span> <span class="nx">https</span><span class="p">:</span><span class="c1">//$host$request_uri; }</span></code></pre></figure>
+
+<p>Using this method is effective, but as of writing this, Mozilla’s observatory does not support detection for this method.</p>
+
+<h1 id="prevent-information-disclosure">Prevent Information Disclosure</h1>
+<h3 id="server-information">Server information</h3>
+<p>If you check the headers on a default install of nginx, you will find that it likes to give visitors a lot of information about your server that they don’t need. You can check the headers using <strong>curl -I http://localhost</strong>. Look for the ‘Server’ header and look at the information sent. It should look something like this.</p>
+
+<blockquote>
+  <p>$ curl -I http://localhost<br />
+HTTP/1.1 200 OK<br />
+…<br />
+Server: nginx/1.13.10 (Ubuntu)<br />
+…</p>
+</blockquote>
+
+<p>Knowing the version number and operating system gives attackers a lot of information about your system for free. I’m not super into that so let’s turn it off. Add this line to an http block in your config file.</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">http</span> <span class="p">{</span>
+    <span class="p">...</span>
+    <span class="nx">server_tokens</span> <span class="nx">off</span><span class="p">;</span>
+    <span class="p">...</span>
+<span class="p">}</span></code></pre></figure>
+
+<h3 id="php-information">PHP Information</h3>
+<p>Oh boy here we go again. If you’ve got PHP, you’re probably giving out info for free. PHP wants everyone to know what version it is. Now we’re back to checking out your headers. Again, the header we’re looking for will look similar to this.</p>
+
+<blockquote>
+  <p>$ curl -I http://localhost<br />
+HTTP/1.1 200 OK<br />
+…<br />
+X-Powered-By: PHP/5.4.0<br />
+…</p>
+</blockquote>
+
+<p>To prevent this we need to change some PHP settings in /etc/php.ini. Inside the file there is a line that will say expose_php, change it to off.</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">...</span>
+<span class="nx">expose_php</span> <span class="o">=</span> <span class="nx">Off</span>
+<span class="p">...</span></code></pre></figure>
+
+<h1 id="clickjack-prevention">Clickjack prevention</h1>
+<p>The X-Frame-Options header can be set to inform a browser what content will be allowed to render a page in a frame or object. This prevents third parties from embedding their content in your site.
+<br /><br />
+There are three options for this header</p>
+<blockquote>
+  <p>X-Frame-Options: DENY<br />
+X-Frame-Options: SAMEORIGIN<br />
+X-Frame-Options: ALLOW-FROM https://external.website.com/</p>
+</blockquote>
+
+<ul>
+  <li>DENY obviously denies all pages.</li>
+  <li>SAMEORIGIN will allow pages from the same origin as the current site. Different browsers interpret origin to mean one of the following: top level, parent, or the whole chain.</li>
+  <li>ALLOW-FROM will allow a specific site to embed content. A common use for this is to add YouTube as a valid source to show YouTube videos on your site.</li>
+</ul>
+
+<p>The command to actually add this to your server is</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">server</span> <span class="p">{</span>
+    <span class="p">...</span>
+    <span class="nx">add_header</span> <span class="nx">X</span><span class="o">-</span><span class="nx">Frame</span><span class="o">-</span><span class="nx">Options</span> <span class="nx">SAMEORIGIN</span> <span class="nx">always</span><span class="p">;</span>
+    <span class="p">...</span>
+<span class="p">}</span></code></pre></figure>
+
+<h1 id="content-type-check">Content Type Check</h1>
+<p>If you are a lemonade salesman, and people ask you for steak, that’s gonna confuse you. The same goes for web servers and MIME type. The X-Content-Type-Options header with the nosniff option will block a request unless the type is “style” or “script” and the MIME type does not match “text/css” or a JavaScript mime type.</p>
+
+<p>Again, this one is pretty simple to add.</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">server</span> <span class="p">{</span>
+    <span class="p">...</span>
+    <span class="nx">X</span><span class="o">-</span><span class="nx">Content</span><span class="o">-</span><span class="nx">Type</span><span class="o">-</span><span class="nx">Options</span> <span class="nx">nosniff</span> <span class="nx">always</span><span class="p">;</span>
+    <span class="p">...</span>
+<span class="p">}</span></code></pre></figure>
+
+<h1 id="detect-reflected-cross-site-scripting-attacks">Detect reflected cross site scripting attacks</h1>
+<p>If you disable in line JavaScript via content security policy, then this header is only useful on browsers that do not support content security policies. The X-XSS-Protection header tells the browser to stop loading a page if it detects reflected cross site scripting. Reflected cross site scripting is when an attacker injects code into a request. It is not saved on the server and will only affect users that request it. An example would be posting JavaScript code in a forum post that does not sanitize user input.
+<br /><br />
+You can see all the options for this header at <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection">developer.mozilla.org</a>. Otherwise, just add this.</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">server</span> <span class="p">{</span>
+    <span class="p">...</span>
+    <span class="nx">add_header</span> <span class="nx">X</span><span class="o">-</span><span class="nx">XSS</span><span class="o">-</span><span class="nx">Protection</span> <span class="s2">"1; mode=block"</span> <span class="nx">always</span><span class="p">;</span>
+    <span class="p">...</span>
+<span class="p">}</span></code></pre></figure>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>There is much more to do, but this is a solid foundation. If you have any questions or corrections, send them to <a href="mailto:support@connor.rocks">support@connor.rocks</a></p>
+
+</div>
+
+<div class="related">
+  <h1 style="text-align: center;">Related Posts</h1>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/dozenal/">
+            Dozenal/Duodecimal
+            <small>29 Oct 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/web-sec-audit/">
+            Black Box Web Application Audit
+            <small>20 May 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/CVE-base-scoring/">
+            CWE Base Score Calculation
+            <small>03 May 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+<!--
+<div class="comments">
+</div>
+-->
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+
+    <div align="center" class="footer">
+        Site built by Connor<br /><a href="https://github.com/ariestiyansyah/naringu" target="_blank" title="naringu">Theme</a>  designed by Rizky Ariestiyansyah<br />Copyright © 2020 <br>
+    </div>
+  </body>
+</html>

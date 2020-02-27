@@ -1,0 +1,870 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>Connor.rocks</title>
+ <link href="http://localhost:4000/atom.xml" rel="self"/>
+ <link href="http://localhost:4000/"/>
+ <updated>2020-02-27T18:46:12-05:00</updated>
+ <id>http://localhost:4000</id>
+ <author>
+   <name>Connor</name>
+   <email>connor@connor.rocks</email>
+ </author>
+
+ 
+ <entry>
+   <title>Dozenal/Duodecimal</title>
+   <link href="http://localhost:4000/dozenal/"/>
+   <updated>2018-10-29T00:00:00-04:00</updated>
+   <id>http://localhost:4000/dozenal</id>
+   <content type="html">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;Dozenal/Duodecimal is a number system with base 12, as opposed to the conventional base 10 system called the decimal system. Most humans have 10 fingers, which makes the decimal system appealing to people that still use their fingers to count;
+however, those of us that have reached 12 years old probably had to abandon this technique for a mental math and even written approach to solving equations.
+The dozenal system tries to improve on the mental math that everyone does. Because 12 has 2 more factors than 10, it is easier to break
+down equations that are in the dozenal system into more manageable pieces.&lt;/p&gt;
+
+&lt;h1 id=&quot;converter&quot;&gt;Converter&lt;/h1&gt;
+&lt;script src=&quot;/public/js/dozenal.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;Enter numbers below and they will be magically converted for you, as long as javascript is enabled.&lt;br /&gt;
+To convert from dozenal to decimal input “X” and “E” as dozenal characters dek (↊) and el (↋) respectively.
+&lt;br /&gt;Unicode also works, but who types in unicode?
+Only integers can be used in the dozenal input.
+&lt;br /&gt;&lt;br /&gt;
+Check this box to change dozenal characters to “X” and “E”: &lt;input id=&quot;non-unicode&quot; type=&quot;checkbox&quot; onchange=&quot;to_dozenal()&quot; checked=&quot;&quot; /&gt;
+&lt;br /&gt;&lt;br /&gt;
+Decimal input: 
+&lt;input onchange=&quot;to_dozenal()&quot; onkeyup=&quot;to_dozenal()&quot; onpaste=&quot;to_dozenal()&quot; id=&quot;base10&quot; value=&quot;0&quot; /&gt;
+&lt;button onclick=&quot;to_decimal()&quot;&gt;Convert to decimal&lt;/button&gt;
+&lt;br /&gt;&lt;br /&gt;
+Dozenal input:
+&lt;input onchange=&quot;to_decimal()&quot; onkeyup=&quot;to_decimal()&quot; onpaste=&quot;to_decimal()&quot; id=&quot;base12&quot; value=&quot;0&quot; /&gt;
+&lt;button onclick=&quot;to_dozenal()&quot;&gt;Convert to dozenal&lt;/button&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;what-is-dozenalduodecimal&quot;&gt;What is Dozenal/Duodecimal?&lt;/h1&gt;
+&lt;p&gt;The dozenal numbering system is a way to represent numbers that aims to be more effective than the decimal system we are accustomed to.
+In the decimal system, there are 10 numbers to choose from:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;0, 1, 2, 3, 4, 5, 6, 7, 8, and 9&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;When we run out of these, for example when writing the number 10, we create a new column to say, “we have already used all our one digit numbers N amount of times in this column”.
+The same thing works when we write the number 100. We used all the single digit numbers once, but this time in the 10’s column, so increment to 100’s column.&lt;br /&gt;&lt;br /&gt;
+In the dozenal system, there are 12 numbers to choose from:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;0, 1, 2, 3, 4, 5, 6, 7, 8, 9,&lt;br /&gt;
+and two new ones:&lt;br /&gt;
+“↊” or “X”, pronounced “dek”&lt;br /&gt;
+“↋” or “E”, pronounced “el”&lt;br /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Using the Dozenal system we can represent numbers up to what we would ‘normally’ call 11.&lt;br /&gt;
+Metaphorically turning the dial up to eleven.&lt;br /&gt;
+To differentiate numbers using base 10 and base 12, I will be using subscript &lt;sub&gt;d&lt;/sub&gt; or &lt;sub&gt;z&lt;/sub&gt; after the number to denote type.
+This would mean that E&lt;sub&gt;z&lt;/sub&gt; is equal to 11&lt;sub&gt;d&lt;/sub&gt;.&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;How does one pronounce these digits? Check the chart I stole from &lt;a href=&quot;https://en.wikipedia.org/wiki/Duodecimal#Advocacy_and_%22dozenalism%22&quot;&gt;wikipedia&lt;/a&gt; below.&lt;/p&gt;
+&lt;table&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Duodecimal&lt;/th&gt;
+            &lt;th&gt;Name&lt;/th&gt;
+            &lt;th&gt;Decimal&lt;/th&gt;
+            &lt;th&gt;Duodecimal fraction&lt;/th&gt;
+            &lt;th&gt;Name
+            &lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td style=&quot;text-align:right&quot;&gt;1
+            &lt;/td&gt;
+            &lt;td&gt;one
+            &lt;/td&gt;
+            &lt;td style=&quot;text-align:right&quot;&gt;1
+            &lt;/td&gt;
+            &lt;td colspan=&quot;2&quot;&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td style=&quot;text-align:right&quot;&gt;10
+            &lt;/td&gt;
+            &lt;td&gt;&lt;abbr title=&quot;pronounced &amp;#39;doh&amp;#39;&quot;&gt;do&lt;/abbr&gt;
+            &lt;/td&gt;
+            &lt;td style=&quot;text-align:right&quot;&gt;12
+            &lt;/td&gt;
+            &lt;td style=&quot;text-align:right&quot;&gt;0;1&lt;/td&gt;
+            &lt;td&gt;edo
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td style=&quot;text-align:right&quot;&gt;100
+            &lt;/td&gt;
+            &lt;td&gt;&lt;abbr title=&quot;pronounced &amp;#39;groh&amp;#39;&quot;&gt;gro&lt;/abbr&gt;
+            &lt;/td&gt;
+            &lt;td style=&quot;text-align:right&quot;&gt;144
+            &lt;/td&gt;
+            &lt;td style=&quot;text-align:right&quot;&gt;0;01
+            &lt;/td&gt;
+            &lt;td&gt;egro
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td style=&quot;text-align:right&quot;&gt;1,000
+            &lt;/td&gt;
+            &lt;td&gt;&lt;abbr title=&quot;pronounced &amp;#39;moh&amp;#39;&quot;&gt;mo&lt;/abbr&gt;
+            &lt;/td&gt;
+            &lt;td style=&quot;text-align:right&quot;&gt;1,728
+            &lt;/td&gt;
+            &lt;td style=&quot;text-align:right&quot;&gt;0;001
+            &lt;/td&gt;
+            &lt;td&gt;emo
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td style=&quot;text-align:right&quot;&gt;10,000
+            &lt;/td&gt;
+            &lt;td&gt;do-mo
+            &lt;/td&gt;
+            &lt;td style=&quot;text-align:right&quot;&gt;20,736
+            &lt;/td&gt;
+            &lt;td style=&quot;text-align:right&quot;&gt;0;000,1
+            &lt;/td&gt;
+            &lt;td&gt;edo-mo
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td style=&quot;text-align:right&quot;&gt;100,000
+            &lt;/td&gt;
+            &lt;td&gt;gro-mo
+            &lt;/td&gt;
+            &lt;td style=&quot;text-align:right&quot;&gt;248,832
+            &lt;/td&gt;
+            &lt;td style=&quot;text-align:right&quot;&gt;0;000,01
+            &lt;/td&gt;
+            &lt;td&gt;egro-mo
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td style=&quot;text-align:right&quot;&gt;1,000,000
+            &lt;/td&gt;
+            &lt;td&gt;bi-mo
+            &lt;/td&gt;
+            &lt;td style=&quot;text-align:right&quot;&gt;2,985,984
+            &lt;/td&gt;
+            &lt;td style=&quot;text-align:right&quot;&gt;0;000,001
+            &lt;/td&gt;
+            &lt;td&gt;ebi-mo
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td style=&quot;text-align:right&quot;&gt;1,000,000,000
+            &lt;/td&gt;
+            &lt;td&gt;tri-mo
+            &lt;/td&gt;
+            &lt;td style=&quot;text-align:right&quot;&gt;5,159,780,352
+            &lt;/td&gt;
+            &lt;td style=&quot;text-align:right&quot;&gt;0;000,000,001
+            &lt;/td&gt;
+            &lt;td&gt;etri-mo
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&quot;why-would-anyone-use-this-number-system&quot;&gt;Why would anyone use this number system?&lt;/h1&gt;
+&lt;p&gt;The following systems would be easier to process using the base 12 system considering that they are already multiples of 12.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;button onclick=&quot;run_clock()&quot;&gt;Start Clock&lt;/button&gt;
+&lt;code class=&quot;highlighter-rouge&quot; id=&quot;clock&quot;&gt;Press the button to start the clock.&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Time
+    &lt;ul&gt;
+      &lt;li&gt;There are 12 months in a year&lt;/li&gt;
+      &lt;li&gt;There are 24 hours in a day&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Computing
+    &lt;ul&gt;
+      &lt;li&gt;Octal alternative that stores more data per digit&lt;/li&gt;
+      &lt;li&gt;Hex alternative that has more factors&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Finance
+    &lt;ul&gt;
+      &lt;li&gt;More factors than decimal makes mental math easier&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Bakeries
+    &lt;ul&gt;
+      &lt;li&gt;A Baker’s dozen&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;numerical-factors&quot;&gt;Numerical factors&lt;/h2&gt;
+&lt;p&gt;The number 10 only has 1, 2, 5, and 10 as factors, and mental math done on numbers with these factors is quite easy to do in base 10.&lt;br /&gt;&lt;br /&gt;
+I am going to focus on 2 and 5, as every number has a factor of 1 and itself.
+For example, if asked to find 125/5&lt;sub&gt;z&lt;/sub&gt;, you could do the math in your head without much thought.&lt;br /&gt;(Hint: it’s 15&lt;sub&gt;d&lt;/sub&gt;)&lt;br /&gt;&lt;br /&gt;
+This is because 5 is a factor of 10&lt;sub&gt;d&lt;/sub&gt;, and we are using the base 10 numbering system.&lt;br /&gt;&lt;br /&gt;
+The same goes for 126/2&lt;sub&gt;d&lt;/sub&gt;, because 2 is a factor of 10.&lt;br /&gt;
+(Hint: it’s 63&lt;sub&gt;d&lt;/sub&gt;)&lt;br /&gt;&lt;br /&gt;
+Last factor for 10 is itself, so 110/10&lt;sub&gt;d&lt;/sub&gt; is super easy for people without brain damage.&lt;br /&gt;
+(Hint: yea right.)&lt;br /&gt;&lt;br /&gt;
+Guess what, those are all the easy ones you get because 10 has no more relevant factors.&lt;br /&gt;
+Therefore, if required to divide 102 by 3 it’s gonna take a little longer for you to work that out in your head.&lt;br /&gt;
+(Hint it’s 34, don’t worry I checked with a calculator to be sure.)&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;why-are-some-multiples-more-difficult-to-work-with&quot;&gt;Why are some multiples more difficult to work with?&lt;/h2&gt;
+&lt;p&gt;Recap part 1: base 10 has 10 different numbers (0, 1, 2, 3, 4, 5, 6, 7, 8, 9).&lt;br /&gt;
+Recap part 2: operations on base 10 numbers with operands that are multiples of 0, 1, 2, and 5 are easier to work with.&lt;br /&gt;
+This implies that multiples of 3, 4, 6, 7, 8, and 9 are more difficult to work with in base 10.&lt;br /&gt;
+Some people argue that people can learn to do these more efficiently by learning mathematical hoops to jump through.&lt;br /&gt;
+An example of one of these base 10 hoops is: if the sum of the digits in a number is divisible by 3, then the original number is divisible by 3.&lt;br /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;102d10&amp;lt;/sub&amp;gt;&lt;br /&gt;
+1 + 0 + 2 = 3&lt;br /&gt;
+3 is divisible by 3&lt;br /&gt;
+therefore 102d10&amp;lt;/sub&amp;gt; is divisible by 3&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;However, these tricks do not match the efficiency of the “easy” set of numbers.&lt;br /&gt;
+I will use the ratio of the number of “easy” digits to total digits as an indicator of average number system difficulty.&lt;br /&gt;
+According to this metric, the “best” (more on this later) possible number system will have a ratio of 1.&lt;br /&gt;
+The following table is a list of common bases and their corresponding ratio.&lt;/p&gt;
+
+&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Base&lt;/th&gt;
+            &lt;th&gt;Ratio (in base 10)&lt;/th&gt;
+            &lt;th&gt;Name&lt;/th&gt;
+            &lt;th&gt;Original Purpose&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;Binary&lt;/td&gt;
+            &lt;td&gt;Digital systems&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;4&lt;/td&gt;
+            &lt;td&gt;.75&lt;/td&gt;
+            &lt;td&gt;Quaternary&lt;/td&gt;
+            &lt;td&gt;Digital systems, DNA encoding&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;8&lt;/td&gt;
+            &lt;td&gt;.5&lt;/td&gt;
+            &lt;td&gt;Octal&lt;/td&gt;
+            &lt;td&gt;Digital systems&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;10&lt;/td&gt;
+            &lt;td&gt;.4&lt;/td&gt;
+            &lt;td&gt;Decimal&lt;/td&gt;
+            &lt;td&gt;Basically everything&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;12&lt;/td&gt;
+            &lt;td&gt;.5&lt;/td&gt;
+            &lt;td&gt;Dozenal/Duodecimal&lt;/td&gt;
+            &lt;td&gt;Timekeeping&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;16&lt;/td&gt;
+            &lt;td&gt;.3125&lt;/td&gt;
+            &lt;td&gt;Hexadecimal&lt;/td&gt;
+            &lt;td&gt;Computing&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;24&lt;/td&gt;
+            &lt;td&gt;.3333...&lt;/td&gt;
+            &lt;td&gt;Tetravigesimal&lt;/td&gt;
+            &lt;td&gt;24 hour timekeeping&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;60&lt;/td&gt;
+            &lt;td&gt;.2&lt;/td&gt;
+            &lt;td&gt;Sexagesimal&lt;/td&gt;
+            &lt;td&gt;Babylonian numerals, Hours-minutes-seconds&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Below is a graph of the ratios for 1-100. As the numbers get higher, the ratio for each number is worse on average.
+&lt;img src=&quot;/images/blog/dozenal/ratio chart.png&quot; alt=&quot;Numbering system ratio&quot; /&gt;
+You may notice that base 1 and base 2 have perfect scores.&lt;br /&gt;
+Why would we not choose base 2 then?&lt;br /&gt;
+Have you ever tried to write out 1 million in base 2? No? Well this is how long that is:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;1,000,000&lt;sub&gt;d&lt;/sub&gt; = 11,110,100,001,001,000,000&lt;sub&gt;b&lt;/sub&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Because base 2 has only 2 digits available (0 and 1), it takes more digits to represent a number than base 10.&lt;br /&gt;
+This brings up an issue that we, as humans, need to consider when choosing a numbering system.&lt;br /&gt;
+How many digits can people process at one time?&lt;br /&gt;
+George Miller wrote a paper named &lt;em&gt;The Magical Number Seven, Plus or Minus Two&lt;/em&gt; in 1956&lt;sup&gt;1&lt;/sup&gt;, that determined the number in question to be, you guessed it, 7…plus or minus 2.&lt;br /&gt;
+Base 2 is required for computers, because they can only measure high or low voltages (in most cases).&lt;br /&gt;
+Humans are not so limited, so while base 2 is excellent for mathematical simplicity, the amount of digits we need to hold in memory at the same time is unreasonable.&lt;br /&gt;
+Therefore, base 2, and similarly base 4, is not the best number system for us, as humans, to use.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Upon further examination of the chart, you will find that base 12 and base 8 have the same score.&lt;br /&gt;
+Some of you are thinking, “Oh man, 7 plus or minus 2 means that base 8 would be better.”&lt;br /&gt;
+To those of you that did &lt;em&gt;not&lt;/em&gt; think that, good for you. Perhaps I have written this article better than I expected.&lt;br /&gt;
+To those of you that did think that, I apologize for not explaining more accurately.&lt;br /&gt;
+This would mean that the more information we can fit in 7 digits, the better the numbering system.&lt;br /&gt;
+If we have the opportunity to encode more data in less digits, with all the benefits of being the most optimal numbering system (for humans),
+then who in their right mind would want to make things more difficult for themselves?&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;This leaves us with the base 12 numbering system: the dozenal system.&lt;/p&gt;
+
+&lt;h1 id=&quot;further-reading&quot;&gt;Further reading&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://books.google.ca/books/about/New_numbers.html?id=zfXuAAAAMAAJ&amp;amp;redir_esc=y&quot;&gt;&lt;em&gt;New numbers: how acceptance of a duodecimal (12) base would simplify mathematics&lt;/em&gt; by Frank Emerson Andrews&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;http://www.dozenal.org/&quot;&gt;The Dozenal Society of America &lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;http://www.dozenal.org/drupal/content/fundamental-operations-duodecimal-system.html&quot;&gt;Fundamental Operations in the Duodecimal System&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;http://www.dozenalsociety.org.uk/&quot;&gt;The Dozenal Society of Great Britain&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://youtu.be/U6xJfP7-HCc&quot;&gt;Numberphile’s case for base 12&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;bibliography&quot;&gt;Bibliography&lt;/h1&gt;
+
+&lt;p&gt;&lt;sup&gt;1&lt;/sup&gt;Miller, G. A. (1994). The magical number seven, plus or minus two some limits on our capacity for processing information. Washington, D.C.: American Psychological Assoc.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Black Box Web Application Audit</title>
+   <link href="http://localhost:4000/web-sec-audit/"/>
+   <updated>2018-05-20T00:00:00-04:00</updated>
+   <id>http://localhost:4000/web-sec-audit</id>
+   <content type="html">&lt;div class=&quot;message&quot;&gt;
+DISCLAIMER
+&lt;br /&gt;&lt;br /&gt;
+This is not the MetropolisTransit.com domain available on the internet. This was an assignment for CSEC 731: Web Server Application Security Audits.
+Not all of the information in the final report was included in this version to protect the integrity of the assignment in case the environment is used in future classes.
+&lt;/div&gt;
+
+&lt;p&gt;The most important aspect of an audit is the scope. If the tester tests features that are out of scope, then they could be subject to lawsuits and damage to organization reputation.&lt;/p&gt;
+
+&lt;p&gt;For this specific exercise, this was a development environment, so HTTPS and weak passwords were out of scope.&lt;/p&gt;
+
+&lt;p&gt;The structure of the document is as follows:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;An executive summary that is approximately one page geared towards C-level executives e.g. CEO, CTO, or COO.&lt;/li&gt;
+  &lt;li&gt;A detailed summary that describes the attack narrative and summarizes the results. This section should be about two or three pages and should be geared towards a project manager&lt;/li&gt;
+  &lt;li&gt;A technical results section that summarizes each specific vulnerability found. This section should have a well developed, standardized, template that can be used for each vulnerability rather than writing out a full narrative.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Without further delay, you can read the PDF version at &lt;a href=&quot;https://connor.rocks/web-sec-audit/Practice_Audit.pdf&quot;&gt;connor.rocks&lt;/a&gt;&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>CWE Base Score Calculation</title>
+   <link href="http://localhost:4000/CVE-base-scoring/"/>
+   <updated>2018-05-03T00:00:00-04:00</updated>
+   <id>http://localhost:4000/CVE-base-scoring</id>
+   <content type="html">&lt;p&gt;CWE stands for common weaknesses enumeration. It is used as a tool to standardize the degree of weakness that a vulnerability in an environment poses. Compared to CVE (Common Vulnerabilities and Exposures), CWEs are normally related to how an instance of the program is configured, rather than vulnerabilites with the underlying program itself. The score of each CWE is calculated by the CVSS: Common Vulnerability Scoring System.&lt;/p&gt;
+
+&lt;h1 id=&quot;score-severity-chart&quot;&gt;Score Severity Chart&lt;/h1&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+		&lt;tr&gt; 
+			&lt;th&gt; Severity &lt;/th&gt;
+			&lt;th&gt; Base CWE Score Range &lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td&gt; None &lt;/td&gt;
+			&lt;td&gt; 0.0 &lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt; Low &lt;/td&gt;
+			&lt;td&gt; 0.1 - 3.9 &lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt; Medium &lt;/td&gt;
+			&lt;td&gt; 4.0 - 6.9 &lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt; High &lt;/td&gt;
+			&lt;td&gt; 7.0 - 8.9 &lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt; Critical &lt;/td&gt;
+			&lt;td&gt; 9.0 - 10  &lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&quot;breakdown-of-base-score-metrics&quot;&gt;Breakdown of base score metrics&lt;/h1&gt;
+&lt;p&gt;Each section contains the metric’s potential values in order of decending value. Each metric has an abreviation associated to see a CVSS score breakdown at a glance.&lt;/p&gt;
+
+&lt;h1 id=&quot;calculator&quot;&gt;Calculator&lt;/h1&gt;
+&lt;p&gt;A calculator for CVSS score can be found at &lt;a href=&quot;https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator&quot;&gt;nvd.nist.gov&lt;/a&gt;. In addition I will explain how the base scoring works.&lt;/p&gt;
+
+&lt;h2 id=&quot;exploitability-metrics&quot;&gt;Exploitability Metrics&lt;/h2&gt;
+&lt;p&gt;Exploitability metrcis pertain to the specific circumstances that a vulnerability is exploitable.&lt;/p&gt;
+
+&lt;h3 id=&quot;attack-vector-av&quot;&gt;Attack Vector (AV)&lt;/h3&gt;
+&lt;p&gt;Attack vector is a description of how the attacker reaches the vulnerable entity.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Network (AV:N)
+    &lt;ul&gt;
+      &lt;li&gt;The vulnerability is accessable over OSI layer 3 (Network).&lt;/li&gt;
+      &lt;li&gt;Generally these are considered remotely exploitable because the attacker is not restricted in physical location.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Adjacent Network (AV:A)
+    &lt;ul&gt;
+      &lt;li&gt;The vulnerability is accessable over OSI layer 2 (Data Link).&lt;/li&gt;
+      &lt;li&gt;This attack vector could be bluetooth or same subnet of the network.&lt;/li&gt;
+      &lt;li&gt;This means that if the attacker must cross a router, then they would not a threat.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Local (AV:L)
+    &lt;ul&gt;
+      &lt;li&gt;The vulnerability relies on components not bound to the network stack.&lt;/li&gt;
+      &lt;li&gt;For example, if the vulnerability requires the attacker to have write permissions to a file.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Physical (AV:P)
+    &lt;ul&gt;
+      &lt;li&gt;The attacker must be able to touch the target or a device directly connected to the target.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;attack-complexity-ac&quot;&gt;Attack Complexity (AC)&lt;/h3&gt;
+&lt;p&gt;The amount of control the attacker has on variables that will affect the outcome of the attempted exploit.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Low (AC:L)
+    &lt;ul&gt;
+      &lt;li&gt;The attacker can expect reliable results when exploiting the vulnerability.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;High (AC:H)
+    &lt;ul&gt;
+      &lt;li&gt;The outcome of the attempt relies on variables outside of the attacker’s control.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;privileges-required-pr&quot;&gt;Privileges Required (PR)&lt;/h3&gt;
+&lt;p&gt;The access level required to exploit the vulnerability &lt;em&gt;beforehand&lt;/em&gt;.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;None (PR:N)
+    &lt;ul&gt;
+      &lt;li&gt;The attacker does not require any level of escalated privilages.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Low (PR:L)
+    &lt;ul&gt;
+      &lt;li&gt;The vulnerability requires the attacker to be minimally authenticated.&lt;/li&gt;
+      &lt;li&gt;The vulnerability may only require access to non-sensitive resources.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;High (PR:H)
+    &lt;ul&gt;
+      &lt;li&gt;The attacker must have control over system wide settings or files.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;user-interaction-ui&quot;&gt;User Interaction (UI)&lt;/h3&gt;
+&lt;p&gt;Does the vulnerability require the user’s permission or interaction?&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;None (UI:N)
+    &lt;ul&gt;
+      &lt;li&gt;Nope.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Required (UI:R)
+    &lt;ul&gt;
+      &lt;li&gt;The user is required to click a link, or open a specific program.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;scope-s&quot;&gt;Scope (S)&lt;/h3&gt;
+&lt;p&gt;Does the attacker gain more access to the system by using this vulnerability?&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Unchanged (S:U)
+    &lt;ul&gt;
+      &lt;li&gt;The attacker gains no extra priviledges or access.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Changed (S:C)
+    &lt;ul&gt;
+      &lt;li&gt;The attacker gains access to data they did not have access to previously.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;impact-metrics&quot;&gt;Impact Metrics&lt;/h2&gt;
+&lt;p&gt;Impact metrics are an attempt to explain how badly the target is affected by the vulnerability, if an attacker exploits it.&lt;/p&gt;
+
+&lt;h3 id=&quot;confidentiality-impact-c&quot;&gt;Confidentiality Impact (C)&lt;/h3&gt;
+&lt;p&gt;Will the organization hosting the vulnerability leak information that could be used for evil?&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;None (C:N)
+    &lt;ul&gt;
+      &lt;li&gt;No information was lost in the attack.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Low (C:L)
+    &lt;ul&gt;
+      &lt;li&gt;The attacker either does not have control of information obtained.&lt;/li&gt;
+      &lt;li&gt;The amount of data that can be obtained is restricted.&lt;/li&gt;
+      &lt;li&gt;The information lost is not critical.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;High (C:H)
+    &lt;ul&gt;
+      &lt;li&gt;All information is lost.&lt;/li&gt;
+      &lt;li&gt;Only some access is gained, but the information leak presents a serious issue.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;integrity-impact-i&quot;&gt;Integrity Impact (I)&lt;/h3&gt;
+&lt;p&gt;Can the attacker change data that they have access to.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;None (I:N)
+    &lt;ul&gt;
+      &lt;li&gt;No information can be modified in the attack.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Low (I:L)
+    &lt;ul&gt;
+      &lt;li&gt;The attacker either does not have control of information imodified.&lt;/li&gt;
+      &lt;li&gt;The amount of data that can be modified is restricted&lt;/li&gt;
+      &lt;li&gt;The information lost is not critical.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;High (I:H)
+    &lt;ul&gt;
+      &lt;li&gt;All integrity is lost.&lt;/li&gt;
+      &lt;li&gt;Only some data is modified, but the information leak presents a serious issue.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;availability-impact-a&quot;&gt;Availability Impact (A)&lt;/h3&gt;
+&lt;p&gt;Will the attack be able to restrict others from utilizing resources?&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;None (A:N)
+    &lt;ul&gt;
+      &lt;li&gt;No, the attacker cannot deny access to the resource.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Low (A:L)
+    &lt;ul&gt;
+      &lt;li&gt;The attacker can only reduce performance, even if repeated exploitation is possible.&lt;/li&gt;
+      &lt;li&gt;The attacker is still restricted in how they can deny service.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;High (A:H)
+    &lt;ul&gt;
+      &lt;li&gt;The service can be fully blocked.&lt;/li&gt;
+      &lt;li&gt;If not fully blocked, the consequences are a serious issue.&lt;/li&gt;
+      &lt;li&gt;Perhaps the attacker cannot close already established connections, but block new ones.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;optional-base-score-tweaks&quot;&gt;Optional Base Score Tweaks&lt;/h1&gt;
+&lt;p&gt;There are also Temporal Score Metrics and Environmental Score Metrics, but they only modify the base score. The base score is what the temporal and envirenmental scores are based on.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Temporal Score Metrics
+    &lt;ul&gt;
+      &lt;li&gt;Changes to the base score based on what tools can be used to exploit or patch the vulnerability in the present day.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Environmental Score Metrics
+    &lt;ul&gt;
+      &lt;li&gt;These metrics closely resemble the base score metrics, but focus on the environmental circumstances required.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Secure NGINX Webserver</title>
+   <link href="http://localhost:4000/secure-nginx/"/>
+   <updated>2018-03-24T00:00:00-04:00</updated>
+   <id>http://localhost:4000/secure-nginx</id>
+   <content type="html">&lt;div class=&quot;message&quot;&gt;
+DISCLAIMER
+&lt;br /&gt;&lt;br /&gt;
+This post is not exhaustive and focuses on providing you with the terminology necessary to learn more. You will still need to configure these to suit your web server specifically.
+&lt;/div&gt;
+
+&lt;h1 id=&quot;before-you-begin&quot;&gt;Before you begin&lt;/h1&gt;
+&lt;p&gt;This post is specific to Nginx, but many of the principles can be applied to apache or other popular web servers with a few tweaks to the configuration statements.
+&lt;br /&gt;&lt;br /&gt;
+To compare your security settings before and after, Mozilla will scan your website and give you a grade for your level of security at &lt;a href=&quot;https://observatory.mozilla.org/&quot;&gt;observatory.mozilla.org&lt;/a&gt;. You can also install &lt;a href=&quot;http://wapiti.sourceforge.net/&quot;&gt;wapiti&lt;/a&gt; to scan your site for vulnerabilities outside of the scope of this post.
+&lt;br /&gt;&lt;br /&gt;
+View the report for Connor.rocks at &lt;a href=&quot;https://observatory.mozilla.org/analyze/connor.rocks&quot;&gt;observatory.mozilla.org/analyze/connor.rocks&lt;/a&gt;
+&lt;br /&gt;&lt;br /&gt;
+Important files:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Nginx main config file
+    &lt;ul&gt;
+      &lt;li&gt;/etc/nginx/nginx.conf&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Diffie-Hellman key file
+    &lt;ul&gt;
+      &lt;li&gt;You can chose where to put this, but I recommend here for organization.&lt;/li&gt;
+      &lt;li&gt;/etc/nginx/cert/&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;PHP configuration file
+    &lt;ul&gt;
+      &lt;li&gt;/etc/php.ini (default)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;ssltls&quot;&gt;SSL/TLS&lt;/h1&gt;
+&lt;p&gt;SSL/TLS could probably merit an entire post, so I’ll try to keep it sort. LetsEncrypt will do basically everything for free, and all you gotta do is run the installer. Here’s how: download certbot for your setup at &lt;a href=&quot;https://certbot.eff.org/&quot;&gt;certbot.eff.org&lt;/a&gt;, run it, and you can now use HTTPS.&lt;/p&gt;
+
+&lt;p&gt;From here I recommend upgrading your Diffie-Hellman key. Default key lengths are quite short, so we need to generate a new one. You will need Git if you have not already installed it.&lt;/p&gt;
+
+&lt;p&gt;Create the folder /etc/nginx/cert/ if it does not already exist, then run the following command. This could take a while. It took a full episode of Your Lie in April (~20 minutes) for me before it finally finished.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;openssl dhparam 4096 -out /etc/nginx/cert/dhparam.pem&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;When it finishes, add this to your nginx config file right around where the ssl options added by certbot appear.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;nx&quot;&gt;server&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ssl_dhparam&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;etc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;nginx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cert&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dhparam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Last but not least, if yo do not see the following in the config file, add it to ensure that your server prefers to use at least generally acceptable ciphers.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;nx&quot;&gt;http&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ssl_protocols&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TLSv1&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TLSv1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TLSv1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ssl_ciphers&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ssl_prefer_server_ciphers&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h1 id=&quot;content-security-policy-csp&quot;&gt;Content Security Policy (CSP)&lt;/h1&gt;
+&lt;p&gt;This will be the hardest section.
+&lt;br /&gt;&lt;br /&gt;
+Content security policy is one of the most important aspects of securing your visitors aside from SSL/TLS, but is &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP#Browser_compatibility&quot;&gt;not supported by all browsers&lt;/a&gt;. The CSP itself is sent via HTTP headers. It limits what a browser will display by whitelisting or blacklisting specific content from third party sites. For example, if any external scripts run on your site e.g. Google analytics.
+&lt;br /&gt;&lt;br /&gt;
+The command to add your own strict content security policy is&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;    &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;add_header&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Content&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Security&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Policy&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;default-src 'self'; script-src 'self' 'unsafe-eval'; img-src 'self'; style-src 'self'; font-src 'self'; frame-src 'none'; object-src 'none'; form-src 'self'&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;This command, as written will disable nearly all content from external sites. In order to relax this a bit we need to look at each directive. It should be added outside of any sections to apply it to the whole server, as opposed to a subset.&lt;/p&gt;
+
+&lt;h3 id=&quot;directives&quot;&gt;Directives&lt;/h3&gt;
+&lt;p&gt;Each directive is added to the list separated by semicolons in the header. Notable values are ‘none’, ‘self’, and ‘unsafe-inline’. Using ‘none’ will disallow all sources of the content controlled by the directive. Using ‘self’ is just a shorter version of typing your own url, so for this site it would translate to ‘https://connor.rocks’, and would allow content from my&lt;em&gt;self&lt;/em&gt;. Last but not least, ‘unsafe-inline’ is used mainly in script-src and style-src allowing scripts or css written in line with HTML. I do not recommend using it because it is quite easy to add lines to HTML in transit, meaning that your visitors may execute code injected by a man in the middle.&lt;/p&gt;
+
+&lt;p&gt;This table is an overview of common directives. An extended list can be found at &lt;a href=&quot;https://www.w3.org/TR/CSP2/#directives&quot;&gt;w3.org&lt;/a&gt;.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Directive&lt;/th&gt;
+      &lt;th&gt;Usage&lt;/th&gt;
+      &lt;th&gt;Description&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tfoot&gt;
+    &lt;tr&gt;
+      &lt;td&gt;script-src&lt;/td&gt;
+      &lt;td&gt;'self' js.external.com&lt;/td&gt;
+      &lt;td&gt;Determines allowed sources of client side scripts.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tfoot&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;default-src&lt;/td&gt;
+      &lt;td&gt;'none' external.website.com&lt;/td&gt;
+      &lt;td&gt;This directive is the default for all loaded content: JavaScript, css, fonts, frames, ...etc. Most directives, if not manually set, will use this value. As such, the most secure option is to use 'none' and override the default by allowing other settings.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;style-src&lt;/td&gt;
+      &lt;td&gt;'self' external.website.com&lt;/td&gt;
+      &lt;td&gt;Determines allowed sources of CSS.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;img-src&lt;/td&gt;
+      &lt;td&gt;'self' external.website.com&lt;/td&gt;
+      &lt;td&gt;Determines allowed sources of images.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;form-src&lt;/td&gt;
+      &lt;td&gt;'self'&lt;/td&gt;
+      &lt;td&gt;Determines allowed sources of HTML forms. Usually this is just self.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;frame-src&lt;/td&gt;
+      &lt;td&gt;'self' external.website.com&lt;/td&gt;
+      &lt;td&gt;Determines allowed sources of iframes. This includes things like embedded youtube videos.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;example-to-add-paypal-donate-button-to-website-with-strict-content-security-policy&quot;&gt;Example to add Paypal donate button to website with strict content security policy&lt;/h3&gt;
+&lt;p&gt;These are the only directives needed to add a PayPal donate button to your site. Using a strict content security policy, browsers will not display the donate button unless you add PayPal as an acceptable source for images and forms.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;    &lt;span class=&quot;nx&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'self'&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;https&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif https://www.paypalobjects.com/en_US/i/scr/pixel.gif;
+&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;form&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;action&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'self'&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;https&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//www.paypal.com/cgi-bin/webscr;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h1 id=&quot;redirect-traffic-to-https&quot;&gt;Redirect traffic to HTTPS&lt;/h1&gt;
+&lt;h3 id=&quot;strict-transport-security-hsts&quot;&gt;Strict Transport Security (HSTS)&lt;/h3&gt;
+&lt;p&gt;HSTS tells the client that they should use HTTPS, and remember it for the future.&lt;/p&gt;
+
+&lt;p&gt;It’s just an extra line in the config.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;    &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;add_header&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Strict&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Transport&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Security&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;max-age=31536000&quot;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;always&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Max age is the time that the browser should remember that it should use HTTPS on your site. You can append ‘includeSubDomains’ to well… include sub domains.&lt;/p&gt;
+
+&lt;h3 id=&quot;double-check-to-be-sure-the-redirect-is-working&quot;&gt;Double check to be sure the redirect is working&lt;/h3&gt;
+&lt;p&gt;Having the certificates and setup for HTTPS is great and all, but if no one uses it, then it is worthless.
+&lt;br /&gt;&lt;br /&gt;
+This one is pretty easy. Just add this line that checks for http connections and redirects them to a corresponding https url.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$scheme&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;301&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;https&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//$host$request_uri; }&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Using this method is effective, but as of writing this, Mozilla’s observatory does not support detection for this method.&lt;/p&gt;
+
+&lt;h1 id=&quot;prevent-information-disclosure&quot;&gt;Prevent Information Disclosure&lt;/h1&gt;
+&lt;h3 id=&quot;server-information&quot;&gt;Server information&lt;/h3&gt;
+&lt;p&gt;If you check the headers on a default install of nginx, you will find that it likes to give visitors a lot of information about your server that they don’t need. You can check the headers using &lt;strong&gt;curl -I http://localhost&lt;/strong&gt;. Look for the ‘Server’ header and look at the information sent. It should look something like this.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;$ curl -I http://localhost&lt;br /&gt;
+HTTP/1.1 200 OK&lt;br /&gt;
+…&lt;br /&gt;
+Server: nginx/1.13.10 (Ubuntu)&lt;br /&gt;
+…&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Knowing the version number and operating system gives attackers a lot of information about your system for free. I’m not super into that so let’s turn it off. Add this line to an http block in your config file.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;nx&quot;&gt;http&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;server_tokens&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;off&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;php-information&quot;&gt;PHP Information&lt;/h3&gt;
+&lt;p&gt;Oh boy here we go again. If you’ve got PHP, you’re probably giving out info for free. PHP wants everyone to know what version it is. Now we’re back to checking out your headers. Again, the header we’re looking for will look similar to this.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;$ curl -I http://localhost&lt;br /&gt;
+HTTP/1.1 200 OK&lt;br /&gt;
+…&lt;br /&gt;
+X-Powered-By: PHP/5.4.0&lt;br /&gt;
+…&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;To prevent this we need to change some PHP settings in /etc/php.ini. Inside the file there is a line that will say expose_php, change it to off.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;expose_php&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Off&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h1 id=&quot;clickjack-prevention&quot;&gt;Clickjack prevention&lt;/h1&gt;
+&lt;p&gt;The X-Frame-Options header can be set to inform a browser what content will be allowed to render a page in a frame or object. This prevents third parties from embedding their content in your site.
+&lt;br /&gt;&lt;br /&gt;
+There are three options for this header&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;X-Frame-Options: DENY&lt;br /&gt;
+X-Frame-Options: SAMEORIGIN&lt;br /&gt;
+X-Frame-Options: ALLOW-FROM https://external.website.com/&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;DENY obviously denies all pages.&lt;/li&gt;
+  &lt;li&gt;SAMEORIGIN will allow pages from the same origin as the current site. Different browsers interpret origin to mean one of the following: top level, parent, or the whole chain.&lt;/li&gt;
+  &lt;li&gt;ALLOW-FROM will allow a specific site to embed content. A common use for this is to add YouTube as a valid source to show YouTube videos on your site.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The command to actually add this to your server is&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;nx&quot;&gt;server&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;add_header&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Frame&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Options&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;SAMEORIGIN&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;always&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h1 id=&quot;content-type-check&quot;&gt;Content Type Check&lt;/h1&gt;
+&lt;p&gt;If you are a lemonade salesman, and people ask you for steak, that’s gonna confuse you. The same goes for web servers and MIME type. The X-Content-Type-Options header with the nosniff option will block a request unless the type is “style” or “script” and the MIME type does not match “text/css” or a JavaScript mime type.&lt;/p&gt;
+
+&lt;p&gt;Again, this one is pretty simple to add.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;nx&quot;&gt;server&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Content&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Options&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;nosniff&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;always&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h1 id=&quot;detect-reflected-cross-site-scripting-attacks&quot;&gt;Detect reflected cross site scripting attacks&lt;/h1&gt;
+&lt;p&gt;If you disable in line JavaScript via content security policy, then this header is only useful on browsers that do not support content security policies. The X-XSS-Protection header tells the browser to stop loading a page if it detects reflected cross site scripting. Reflected cross site scripting is when an attacker injects code into a request. It is not saved on the server and will only affect users that request it. An example would be posting JavaScript code in a forum post that does not sanitize user input.
+&lt;br /&gt;&lt;br /&gt;
+You can see all the options for this header at &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection&quot;&gt;developer.mozilla.org&lt;/a&gt;. Otherwise, just add this.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;nx&quot;&gt;server&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;add_header&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;XSS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Protection&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;1; mode=block&quot;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;always&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;There is much more to do, but this is a solid foundation. If you have any questions or corrections, send them to &lt;a href=&quot;mailto:support@connor.rocks&quot;&gt;support@connor.rocks&lt;/a&gt;&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Brickhack 4 IoT Winner</title>
+   <link href="http://localhost:4000/brickhack-4/"/>
+   <updated>2018-01-27T00:00:00-05:00</updated>
+   <id>http://localhost:4000/brickhack-4</id>
+   <content type="html">&lt;p&gt;The original submission and nitty gritty details can be found on Devpost &lt;a href=&quot;https://devpost.com/software/lndry&quot;&gt;here&lt;/a&gt;.
+&lt;br /&gt;&lt;br /&gt;
+I worked with Zack Banack in a 24 hour sleepless hackathon over the weekend. You can see all of his wonderful front end skills at &lt;a href=&quot;https://zackbanack.com&quot;&gt;zackbanack.com&lt;/a&gt;. The whole project was made in 24 hours, so many design decisions were based on functionality instead of security. It’s not like IoT devices are known for their security anyways.
+&lt;br /&gt;&lt;br /&gt;
+You can see a quick demo of the project &lt;a href=&quot;https://youtu.be/9NLGG0di0Gk&quot;&gt;here&lt;/a&gt;.
+&lt;br /&gt;&lt;br /&gt;
+This was the final product presented to the judges.
+&lt;img src=&quot;/images/blog/brickhack4/BH4.jpg&quot; alt=&quot;Complete project&quot; /&gt;
+The devices were designed as a set. The first device, the one in green and orange casing, is designed as a sensor for laundry machines. The device is placed inside or behind a laundry machine in order to prevent tampering and still be able to feel the machine’s vibration. It contains an accelerometer that senses small vibrations in the machine to determine its state: ‘in use’ or ‘available’. The second device, the one with the white case, is essentially a desk toy that communicates the status to you via flashy lights.  The cases are simply for looks, and to help differentiate between the two types of devices.&lt;br /&gt;
+&lt;img src=&quot;/images/blog/brickhack4/guts.jpg&quot; alt=&quot;Internals of the case&quot; /&gt;
+Each device contains a Raspberry Pi 3 for networking and service management. The display device also contains a teensy 3.2 used to communicate to the neopixel ring via I&lt;sup&gt;2&lt;/sup&gt;C. I could have done this from the Pi but I wanted the challenge. To communicate between the Pi and teensy I used four pins to send a four digit binary number that chose the led pattern being displayed.
+&lt;br /&gt;&lt;br /&gt;
+As for the app interface it was made in React Native, and that’s about all I know. You will have to check out Zack’s blog post to learn more about it, but he made this GIF of the progression he made throughout the competition. To learn more, read his blog post &lt;a href=&quot;https://www.zackbanack.com/blog/brickhack4&quot;&gt;here&lt;/a&gt;.
+&lt;img src=&quot;/images/blog/brickhack4/progression.gif&quot; alt=&quot;Amazing GIF of the app interface progression by Zack Banack&quot; /&gt;&lt;/p&gt;
+</content>
+ </entry>
+ 
+
+</feed>

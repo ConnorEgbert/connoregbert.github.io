@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Dozenal/Duodecimal &middot; Connor.rocks
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/naringu.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/form.css">
+
+  <!-- Icons -->
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <link rel="alternate" type="application/rss+xml" title="Mozilla RSS" href="feed.category.xml">
+  </head>
+
+
+<body class="theme-6dd">
+    <input title="Sidebar Toggle" type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>Security minded developer available for hire.</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/">About</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/courselist/">Course List</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/donate/">Donate</a>
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/categories/">Category Index</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/contact/">Contact</a>
+        
+      
+    
+      
+    
+      
+        
+      
+    
+      
+    
+      
+    
+    <a class="sidebar-nav-item" href="https://github.com/ConnorEgbert">GitHub</a>
+  </nav>
+</div>
+
+
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">Connor.rocks</a>
+            <small>Security minded developer available for hire.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 style="text-align: center;" class="post-title">Dozenal/Duodecimal</h1>
+  <span style="text-align: center;" class="post-date">29 Oct 2018</span>
+  <hr />
+  <h1 id="introduction">Introduction</h1>
+<p>Dozenal/Duodecimal is a number system with base 12, as opposed to the conventional base 10 system called the decimal system. Most humans have 10 fingers, which makes the decimal system appealing to people that still use their fingers to count;
+however, those of us that have reached 12 years old probably had to abandon this technique for a mental math and even written approach to solving equations.
+The dozenal system tries to improve on the mental math that everyone does. Because 12 has 2 more factors than 10, it is easier to break
+down equations that are in the dozenal system into more manageable pieces.</p>
+
+<h1 id="converter">Converter</h1>
+<script src="/public/js/dozenal.js"></script>
+
+<p>Enter numbers below and they will be magically converted for you, as long as javascript is enabled.<br />
+To convert from dozenal to decimal input “X” and “E” as dozenal characters dek (↊) and el (↋) respectively.
+<br />Unicode also works, but who types in unicode?
+Only integers can be used in the dozenal input.
+<br /><br />
+Check this box to change dozenal characters to “X” and “E”: <input id="non-unicode" type="checkbox" onchange="to_dozenal()" checked="" />
+<br /><br />
+Decimal input: 
+<input onchange="to_dozenal()" onkeyup="to_dozenal()" onpaste="to_dozenal()" id="base10" value="0" />
+<button onclick="to_decimal()">Convert to decimal</button>
+<br /><br />
+Dozenal input:
+<input onchange="to_decimal()" onkeyup="to_decimal()" onpaste="to_decimal()" id="base12" value="0" />
+<button onclick="to_dozenal()">Convert to dozenal</button>
+<br /><br /></p>
+
+<h1 id="what-is-dozenalduodecimal">What is Dozenal/Duodecimal?</h1>
+<p>The dozenal numbering system is a way to represent numbers that aims to be more effective than the decimal system we are accustomed to.
+In the decimal system, there are 10 numbers to choose from:</p>
+
+<blockquote>
+  <p>0, 1, 2, 3, 4, 5, 6, 7, 8, and 9</p>
+</blockquote>
+
+<p>When we run out of these, for example when writing the number 10, we create a new column to say, “we have already used all our one digit numbers N amount of times in this column”.
+The same thing works when we write the number 100. We used all the single digit numbers once, but this time in the 10’s column, so increment to 100’s column.<br /><br />
+In the dozenal system, there are 12 numbers to choose from:</p>
+
+<blockquote>
+  <p>0, 1, 2, 3, 4, 5, 6, 7, 8, 9,<br />
+and two new ones:<br />
+“↊” or “X”, pronounced “dek”<br />
+“↋” or “E”, pronounced “el”<br /></p>
+</blockquote>
+
+<p>Using the Dozenal system we can represent numbers up to what we would ‘normally’ call 11.<br />
+Metaphorically turning the dial up to eleven.<br />
+To differentiate numbers using base 10 and base 12, I will be using subscript <sub>d</sub> or <sub>z</sub> after the number to denote type.
+This would mean that E<sub>z</sub> is equal to 11<sub>d</sub>.<br /><br /></p>
+
+<p>How does one pronounce these digits? Check the chart I stole from <a href="https://en.wikipedia.org/wiki/Duodecimal#Advocacy_and_%22dozenalism%22">wikipedia</a> below.</p>
+<table>
+    <tbody>
+        <tr>
+            <th>Duodecimal</th>
+            <th>Name</th>
+            <th>Decimal</th>
+            <th>Duodecimal fraction</th>
+            <th>Name
+            </th>
+        </tr>
+        <tr>
+            <td style="text-align:right">1
+            </td>
+            <td>one
+            </td>
+            <td style="text-align:right">1
+            </td>
+            <td colspan="2">
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">10
+            </td>
+            <td><abbr title="pronounced &#39;doh&#39;">do</abbr>
+            </td>
+            <td style="text-align:right">12
+            </td>
+            <td style="text-align:right">0;1</td>
+            <td>edo
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">100
+            </td>
+            <td><abbr title="pronounced &#39;groh&#39;">gro</abbr>
+            </td>
+            <td style="text-align:right">144
+            </td>
+            <td style="text-align:right">0;01
+            </td>
+            <td>egro
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">1,000
+            </td>
+            <td><abbr title="pronounced &#39;moh&#39;">mo</abbr>
+            </td>
+            <td style="text-align:right">1,728
+            </td>
+            <td style="text-align:right">0;001
+            </td>
+            <td>emo
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">10,000
+            </td>
+            <td>do-mo
+            </td>
+            <td style="text-align:right">20,736
+            </td>
+            <td style="text-align:right">0;000,1
+            </td>
+            <td>edo-mo
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">100,000
+            </td>
+            <td>gro-mo
+            </td>
+            <td style="text-align:right">248,832
+            </td>
+            <td style="text-align:right">0;000,01
+            </td>
+            <td>egro-mo
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">1,000,000
+            </td>
+            <td>bi-mo
+            </td>
+            <td style="text-align:right">2,985,984
+            </td>
+            <td style="text-align:right">0;000,001
+            </td>
+            <td>ebi-mo
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">1,000,000,000
+            </td>
+            <td>tri-mo
+            </td>
+            <td style="text-align:right">5,159,780,352
+            </td>
+            <td style="text-align:right">0;000,000,001
+            </td>
+            <td>etri-mo
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h1 id="why-would-anyone-use-this-number-system">Why would anyone use this number system?</h1>
+<p>The following systems would be easier to process using the base 12 system considering that they are already multiples of 12.<br /></p>
+
+<p><button onclick="run_clock()">Start Clock</button>
+<code class="highlighter-rouge" id="clock">Press the button to start the clock.</code></p>
+
+<ul>
+  <li>Time
+    <ul>
+      <li>There are 12 months in a year</li>
+      <li>There are 24 hours in a day</li>
+    </ul>
+  </li>
+  <li>Computing
+    <ul>
+      <li>Octal alternative that stores more data per digit</li>
+      <li>Hex alternative that has more factors</li>
+    </ul>
+  </li>
+  <li>Finance
+    <ul>
+      <li>More factors than decimal makes mental math easier</li>
+    </ul>
+  </li>
+  <li>Bakeries
+    <ul>
+      <li>A Baker’s dozen</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="numerical-factors">Numerical factors</h2>
+<p>The number 10 only has 1, 2, 5, and 10 as factors, and mental math done on numbers with these factors is quite easy to do in base 10.<br /><br />
+I am going to focus on 2 and 5, as every number has a factor of 1 and itself.
+For example, if asked to find 125/5<sub>z</sub>, you could do the math in your head without much thought.<br />(Hint: it’s 15<sub>d</sub>)<br /><br />
+This is because 5 is a factor of 10<sub>d</sub>, and we are using the base 10 numbering system.<br /><br />
+The same goes for 126/2<sub>d</sub>, because 2 is a factor of 10.<br />
+(Hint: it’s 63<sub>d</sub>)<br /><br />
+Last factor for 10 is itself, so 110/10<sub>d</sub> is super easy for people without brain damage.<br />
+(Hint: yea right.)<br /><br />
+Guess what, those are all the easy ones you get because 10 has no more relevant factors.<br />
+Therefore, if required to divide 102 by 3 it’s gonna take a little longer for you to work that out in your head.<br />
+(Hint it’s 34, don’t worry I checked with a calculator to be sure.)<br /><br /></p>
+
+<h2 id="why-are-some-multiples-more-difficult-to-work-with">Why are some multiples more difficult to work with?</h2>
+<p>Recap part 1: base 10 has 10 different numbers (0, 1, 2, 3, 4, 5, 6, 7, 8, 9).<br />
+Recap part 2: operations on base 10 numbers with operands that are multiples of 0, 1, 2, and 5 are easier to work with.<br />
+This implies that multiples of 3, 4, 6, 7, 8, and 9 are more difficult to work with in base 10.<br />
+Some people argue that people can learn to do these more efficiently by learning mathematical hoops to jump through.<br />
+An example of one of these base 10 hoops is: if the sum of the digits in a number is divisible by 3, then the original number is divisible by 3.<br /></p>
+
+<blockquote>
+  <p>102d10&lt;/sub&gt;<br />
+1 + 0 + 2 = 3<br />
+3 is divisible by 3<br />
+therefore 102d10&lt;/sub&gt; is divisible by 3</p>
+</blockquote>
+
+<p>However, these tricks do not match the efficiency of the “easy” set of numbers.<br />
+I will use the ratio of the number of “easy” digits to total digits as an indicator of average number system difficulty.<br />
+According to this metric, the “best” (more on this later) possible number system will have a ratio of 1.<br />
+The following table is a list of common bases and their corresponding ratio.</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Base</th>
+            <th>Ratio (in base 10)</th>
+            <th>Name</th>
+            <th>Original Purpose</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>2</td>
+            <td>1</td>
+            <td>Binary</td>
+            <td>Digital systems</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>.75</td>
+            <td>Quaternary</td>
+            <td>Digital systems, DNA encoding</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>.5</td>
+            <td>Octal</td>
+            <td>Digital systems</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>.4</td>
+            <td>Decimal</td>
+            <td>Basically everything</td>
+        </tr>
+        <tr>
+            <td>12</td>
+            <td>.5</td>
+            <td>Dozenal/Duodecimal</td>
+            <td>Timekeeping</td>
+        </tr>
+        <tr>
+            <td>16</td>
+            <td>.3125</td>
+            <td>Hexadecimal</td>
+            <td>Computing</td>
+        </tr>
+        <tr>
+            <td>24</td>
+            <td>.3333...</td>
+            <td>Tetravigesimal</td>
+            <td>24 hour timekeeping</td>
+        </tr>
+        <tr>
+            <td>60</td>
+            <td>.2</td>
+            <td>Sexagesimal</td>
+            <td>Babylonian numerals, Hours-minutes-seconds</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>Below is a graph of the ratios for 1-100. As the numbers get higher, the ratio for each number is worse on average.
+<img src="/images/blog/dozenal/ratio chart.png" alt="Numbering system ratio" />
+You may notice that base 1 and base 2 have perfect scores.<br />
+Why would we not choose base 2 then?<br />
+Have you ever tried to write out 1 million in base 2? No? Well this is how long that is:</p>
+
+<blockquote>
+  <p>1,000,000<sub>d</sub> = 11,110,100,001,001,000,000<sub>b</sub></p>
+</blockquote>
+
+<p>Because base 2 has only 2 digits available (0 and 1), it takes more digits to represent a number than base 10.<br />
+This brings up an issue that we, as humans, need to consider when choosing a numbering system.<br />
+How many digits can people process at one time?<br />
+George Miller wrote a paper named <em>The Magical Number Seven, Plus or Minus Two</em> in 1956<sup>1</sup>, that determined the number in question to be, you guessed it, 7…plus or minus 2.<br />
+Base 2 is required for computers, because they can only measure high or low voltages (in most cases).<br />
+Humans are not so limited, so while base 2 is excellent for mathematical simplicity, the amount of digits we need to hold in memory at the same time is unreasonable.<br />
+Therefore, base 2, and similarly base 4, is not the best number system for us, as humans, to use.<br /></p>
+
+<p>Upon further examination of the chart, you will find that base 12 and base 8 have the same score.<br />
+Some of you are thinking, “Oh man, 7 plus or minus 2 means that base 8 would be better.”<br />
+To those of you that did <em>not</em> think that, good for you. Perhaps I have written this article better than I expected.<br />
+To those of you that did think that, I apologize for not explaining more accurately.<br />
+This would mean that the more information we can fit in 7 digits, the better the numbering system.<br />
+If we have the opportunity to encode more data in less digits, with all the benefits of being the most optimal numbering system (for humans),
+then who in their right mind would want to make things more difficult for themselves?<br /><br /></p>
+
+<p>This leaves us with the base 12 numbering system: the dozenal system.</p>
+
+<h1 id="further-reading">Further reading</h1>
+
+<p><a href="https://books.google.ca/books/about/New_numbers.html?id=zfXuAAAAMAAJ&amp;redir_esc=y"><em>New numbers: how acceptance of a duodecimal (12) base would simplify mathematics</em> by Frank Emerson Andrews</a><br />
+<a href="http://www.dozenal.org/">The Dozenal Society of America </a><br />
+<a href="http://www.dozenal.org/drupal/content/fundamental-operations-duodecimal-system.html">Fundamental Operations in the Duodecimal System</a><br />
+<a href="http://www.dozenalsociety.org.uk/">The Dozenal Society of Great Britain</a><br />
+<a href="https://youtu.be/U6xJfP7-HCc">Numberphile’s case for base 12</a></p>
+
+<h1 id="bibliography">Bibliography</h1>
+
+<p><sup>1</sup>Miller, G. A. (1994). The magical number seven, plus or minus two some limits on our capacity for processing information. Washington, D.C.: American Psychological Assoc.</p>
+
+</div>
+
+<div class="related">
+  <h1 style="text-align: center;">Related Posts</h1>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/web-sec-audit/">
+            Black Box Web Application Audit
+            <small>20 May 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/CVE-base-scoring/">
+            CWE Base Score Calculation
+            <small>03 May 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/secure-nginx/">
+            Secure NGINX Webserver
+            <small>24 Mar 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+<!--
+<div class="comments">
+</div>
+-->
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+
+    <div align="center" class="footer">
+        Site built by Connor<br /><a href="https://github.com/ariestiyansyah/naringu" target="_blank" title="naringu">Theme</a>  designed by Rizky Ariestiyansyah<br />Copyright © 2020 <br>
+    </div>
+  </body>
+</html>

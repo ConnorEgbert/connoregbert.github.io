@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Brickhack 4 IoT Winner &middot; Connor.rocks
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/naringu.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/form.css">
+
+  <!-- Icons -->
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <link rel="alternate" type="application/rss+xml" title="Mozilla RSS" href="feed.category.xml">
+  </head>
+
+
+<body class="theme-6dd">
+    <input title="Sidebar Toggle" type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>Security minded developer available for hire.</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/">About</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/courselist/">Course List</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/donate/">Donate</a>
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/categories/">Category Index</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/contact/">Contact</a>
+        
+      
+    
+      
+    
+      
+        
+      
+    
+      
+    
+      
+    
+    <a class="sidebar-nav-item" href="https://github.com/ConnorEgbert">GitHub</a>
+  </nav>
+</div>
+
+
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">Connor.rocks</a>
+            <small>Security minded developer available for hire.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 style="text-align: center;" class="post-title">Brickhack 4 IoT Winner</h1>
+  <span style="text-align: center;" class="post-date">27 Jan 2018</span>
+  <hr />
+  <p>The original submission and nitty gritty details can be found on Devpost <a href="https://devpost.com/software/lndry">here</a>.
+<br /><br />
+I worked with Zack Banack in a 24 hour sleepless hackathon over the weekend. You can see all of his wonderful front end skills at <a href="https://zackbanack.com">zackbanack.com</a>. The whole project was made in 24 hours, so many design decisions were based on functionality instead of security. It’s not like IoT devices are known for their security anyways.
+<br /><br />
+You can see a quick demo of the project <a href="https://youtu.be/9NLGG0di0Gk">here</a>.
+<br /><br />
+This was the final product presented to the judges.
+<img src="/images/blog/brickhack4/BH4.jpg" alt="Complete project" />
+The devices were designed as a set. The first device, the one in green and orange casing, is designed as a sensor for laundry machines. The device is placed inside or behind a laundry machine in order to prevent tampering and still be able to feel the machine’s vibration. It contains an accelerometer that senses small vibrations in the machine to determine its state: ‘in use’ or ‘available’. The second device, the one with the white case, is essentially a desk toy that communicates the status to you via flashy lights.  The cases are simply for looks, and to help differentiate between the two types of devices.<br />
+<img src="/images/blog/brickhack4/guts.jpg" alt="Internals of the case" />
+Each device contains a Raspberry Pi 3 for networking and service management. The display device also contains a teensy 3.2 used to communicate to the neopixel ring via I<sup>2</sup>C. I could have done this from the Pi but I wanted the challenge. To communicate between the Pi and teensy I used four pins to send a four digit binary number that chose the led pattern being displayed.
+<br /><br />
+As for the app interface it was made in React Native, and that’s about all I know. You will have to check out Zack’s blog post to learn more about it, but he made this GIF of the progression he made throughout the competition. To learn more, read his blog post <a href="https://www.zackbanack.com/blog/brickhack4">here</a>.
+<img src="/images/blog/brickhack4/progression.gif" alt="Amazing GIF of the app interface progression by Zack Banack" /></p>
+
+</div>
+
+<div class="related">
+  <h1 style="text-align: center;">Related Posts</h1>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/dozenal/">
+            Dozenal/Duodecimal
+            <small>29 Oct 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/web-sec-audit/">
+            Black Box Web Application Audit
+            <small>20 May 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/CVE-base-scoring/">
+            CWE Base Score Calculation
+            <small>03 May 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+<!--
+<div class="comments">
+</div>
+-->
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+
+    <div align="center" class="footer">
+        Site built by Connor<br /><a href="https://github.com/ariestiyansyah/naringu" target="_blank" title="naringu">Theme</a>  designed by Rizky Ariestiyansyah<br />Copyright © 2020 <br>
+    </div>
+  </body>
+</html>
